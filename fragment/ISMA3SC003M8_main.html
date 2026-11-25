@@ -1,0 +1,179 @@
+<!-- =========================================================
+     WDLAB-Proof-Skills · 본문 (기존 레이아웃의 <main> … </main> 안에 넣는 부분)
+     One Cycle Dev. Framework(ISMA3SC003M5)의 04 형식 검증 단계 상세 화면
+     필요한 것: b.css 다음에 /resources/css/A3/renewal/onecycle_product.css
+     ========================================================= -->
+<section class="hero pd-hero" id="top">
+  <div class="pd-orbit" aria-hidden="true"><svg viewBox="0 0 400 400" fill="none">
+    <circle cx="200" cy="200" r="196" stroke="rgba(255,255,255,.06)"/>
+    <circle cx="200" cy="200" r="150" stroke="rgba(255,255,255,.14)"/>
+    <circle cx="200" cy="200" r="104" stroke="rgba(255,255,255,.07)"/>
+    <circle class="dot" cx="200" cy="50" r="4"/><circle class="dot" cx="329.9" cy="125" r="4"/><circle class="dot" cx="329.9" cy="275" r="4"/><circle class="halo" cx="200" cy="350" r="7"/><circle class="me" cx="200" cy="350" r="7"/><circle class="dot" cx="70.1" cy="275" r="4"/><circle class="dot" cx="70.1" cy="125" r="4"/>
+  </svg></div>
+  <div class="wrap">
+    <nav class="pd-crumb" aria-label="현재 위치"><a href="/a3sc/ISMA3SC003M4.do">AI 플랫폼</a><a href="/a3sc/ISMA3SC003M5.do">One Cycle Dev. Framework</a><b>04 형식 검증</b></nav>
+    <span class="kicker">WDLAB-Proof-Skills</span>
+    <h1>테스트가 놓친 순서까지,<br><em>빠짐없이 따져</em> 증명합니다</h1>
+    <p class="lede">프로젝트 이름과 폴더만 등록하면, 두 요청이 겹칠 때만 나타나는 결함을 찾아 실제 코드에서 재현하고, 고치고, 다시 확인합니다. 결과에는 「어디까지 확인했는가」가 함께 적힌 보고서가 붙습니다.</p>
+    <div class="hero-meta">
+      <div><b>31<small>개</small></b><span>같은 절차로 전수 검증한 자사 프로젝트</span></div>
+      <div><b>26<small>건</small></b><span>재현·수정·재검증까지 마친 결함 (FIXED)</span></div>
+      <div><b>15<small>개</small></b><span>Lean 4로 모든 크기에 대해 증명한 속성</span></div>
+      <div><b>26<small>/26</small></b><span>CI 회귀 가드 통과 저장소</span></div>
+    </div>
+    <nav class="subnav" id="pd-subnav"><a href="#intro" class="on">개요</a><a href="#how">동작 방식</a><a href="#features">주요 기능</a><a href="#output">판정·결과물</a><a href="#proof">검증 사례</a><a href="#cycle">One Cycle 연결</a><a href="#terms">용어·FAQ</a><a href="#contact">도입 문의</a></nav>
+  </div>
+</section>
+
+<!-- 개요: 무엇이고, 왜 필요한가 -->
+<section class="sec"><div class="wrap pd-anchor" id="intro">
+  <div class="intro"><div><span class="kicker">Overview</span><h2>테스트는 통과했는데<br>결함은 <em>남아 있습니다</em></h2></div>
+    <div class="prose"><p class="big">테스트를 모두 통과한 서비스에서도 사고는 납니다. 대개 두 가지 일이 거의 동시에 일어났을 때입니다.</p>
+    <p>결제 완료 알림이 거의 같은 순간에 두 번 도착했다고 해 보겠습니다. 두 요청이 모두 「아직 처리 전」임을 확인한 뒤 각자 처리하면 결제가 두 번 반영됩니다. 이런 문제를 동시성 결함이라고 합니다. 요청이 하나씩 차례로 들어올 때는 나타나지 않고, 특정한 순서로 겹칠 때만 나타납니다. 테스트는 사람이 떠올린 몇 가지 경우를 실제로 해 보는 일이어서, 떠올리지 못한 순서는 확인하지 못합니다.</p>
+    <p>형식 검증은 이 빈틈을 다른 방식으로 메웁니다. 그 가운데 모델 검사는 시스템의 핵심 동작을 작은 설계도(모델)로 옮긴 다음, 정해진 범위 안에서 일어날 수 있는 모든 순서를 컴퓨터가 하나도 빼지 않고 따져 보는 방법입니다. 규칙을 어기는 순서가 하나라도 있으면 그 순서를 그대로 보여 주는데, 이것을 반례라고 합니다.</p>
+    <p>지금까지 이 방법은 전문 인력과 비용 때문에 일부 분야에서만 쓰였습니다. WDLAB-Proof-Skills는 모델과 재현 테스트, 수정안을 코딩 에이전트가 작성하게 하고, 그 결과가 옳은지는 사람이 만든 검사 프로그램이 다시 실행해 판정하게 함으로써 이 과정을 자동화했습니다. 형식 검증 언어를 몰라도 쓸 수 있습니다.</p></div></div>
+  <div class="pd-plain"><span class="lb">쉽게 말하면</span>
+    <p>테스트가 교차로에 차를 몇 대 보내 보는 일이라면, 모델 검사는 신호가 바뀔 수 있는 <em>모든 순서를 따져</em> 두 방향에 동시에 파란불이 켜지는 순간이 있는지 찾는 일입니다.</p>
+    <small>차를 백 번 보내도 사고가 없었다는 것과, 사고가 날 수 있는 신호 순서가 없다는 것은 다른 이야기입니다. 다만 모델 검사도 「차로 몇 개, 차 몇 대까지」라는 정해진 범위 안에서만 따집니다. 그 범위는 보고서에 그대로 적습니다.</small></div>
+  <div class="pd-cards c3">
+    <article><div class="ft"><span>테스트</span><b>몇 가지 경우를 해 본다</b></div><p>사람이 고른 경우를 실제 코드로 실행합니다. 빠르고 꼭 필요하지만, 고르지 않은 순서에 대해서는 아무것도 말해 주지 않습니다.</p></article>
+    <article><div class="ft"><span>모델 검사 (TLA+/TLC)</span><b>범위 안의 모든 순서를 따진다</b></div><p>예를 들어 「요청 2건, 단계 6개」라는 범위 안에서 가능한 모든 순서를 빠짐없이 확인합니다. 규칙을 어기는 순서가 있으면 반례로 보여 줍니다.</p></article>
+    <article><div class="ft"><span>증명 (Lean 4)</span><b>크기에 관계없이 보인다</b></div><p>요청이 몇 건이든, 단계가 몇 개든 규칙이 지켜진다는 것을 수학적 증명으로 보입니다. 선택 단계이며, 중요한 속성에 한해 수행합니다.</p></article>
+  </div>
+</div></section>
+
+<!-- 동작 방식 -->
+<section class="sec dark"><div class="wrap pd-anchor" id="how">
+  <div class="sec-h"><div><span class="kicker">How it works</span><h2>등록은 사람이,<br>나머지는 자동으로</h2></div><p>웹 화면에서 프로젝트 이름과 폴더 경로, 저장소에 무엇을 남길지(정책)를 입력하고 실행을 누릅니다. 이후 단계는 자동으로 진행되고, 진행 상황은 화면의 단계 표시에 실시간으로 나타납니다. 앞 단계가 검증기를 통과해야 다음 단계로 넘어갑니다.</p></div>
+  <ol class="pd-steps c4">
+    <li><b>프로젝트 등록</b><p>이름과 폴더 경로, 정책을 입력합니다. 도구는 폴더의 격리된 복제본을 만들어 그 안에서만 작업합니다. 원본 폴더는 읽기 전용으로 다룹니다.</p><span class="who h">사람</span></li>
+    <li><b>기존 테스트 실행</b><p>이미 있는 테스트를 먼저 돌려 출발점을 기록합니다. 원래부터 실패하던 테스트와 불안정한 테스트를 가려 둡니다.</p><span class="who">도구</span></li>
+    <li><b>위험 지점과 규칙 정리</b><p>동시 요청이나 상태 변화가 얽힌 위험 지점을 고르고, 그 지점이 지켜야 할 규칙(속성)을 문서·테스트·코드에서 찾아 고정합니다.</p><span class="who">에이전트 작성 · 검증기 판정</span></li>
+    <li><b>모델 검사</b><p>에이전트가 TLA+ 모델을 쓰고, 모델 검사기 TLC가 범위 안의 모든 순서를 따집니다. 모델이 그 결함을 실제로 잡아낼 수 있는지도 함께 확인합니다.</p><span class="who">에이전트 작성 · TLC 판정</span></li>
+    <li><b>실제 코드에서 재현</b><p>모델에서 나온 반례를 실제 코드의 테스트로 옮깁니다. 수정 전 코드에서 이 테스트가 실패해야 실제 결함으로 인정합니다.</p><span class="who">에이전트 작성 · 테스트 판정</span></li>
+    <li><b>원인 분석과 최소 패치</b><p>어느 위치에서 어떤 조건일 때 왜 발생하는지, 기존 테스트가 왜 놓쳤는지를 정리하고, 필요한 만큼만 고치는 수정안을 만듭니다.</p><span class="who">에이전트 작성 · 검증기 판정</span></li>
+    <li><b>재검증</b><p>재현 테스트 통과, 기존 테스트 회귀 없음, 모델 재검사를 확인합니다. 패치를 되돌리면 다시 실패하는지도 확인합니다.</p><span class="who">검증기</span></li>
+    <li><b>보고서와 검토</b><p>판정과 범위가 적힌 Markdown·DOCX 보고서가 만들어집니다. 규칙이 의도에 맞는지, 수정 설계를 받아들일지는 Review Gate에서 사람이 승인하거나 반려합니다.</p><span class="who h">도구 생성 · 사람 검토</span></li>
+  </ol>
+  <div class="pd-legend"><span>도구·에이전트·검증기가 자동으로 수행</span><span class="h">사람이 입력하거나 검토</span></div>
+  <p class="pd-note">검증기가 거부한 단계는 거부 사유를 에이전트에게 돌려주고 다시 시도합니다(기본 2회). 그래도 통과하지 못하면 뒤 단계로 넘어가지 않으며, 보고서는 그때까지 모인 증거만으로 만들어집니다. 한 번의 실행은 프로젝트당 수십 분이 걸립니다.</p>
+</div></section>
+
+<!-- 주요 기능 -->
+<section class="sec"><div class="wrap pd-anchor" id="features">
+  <div class="sec-h"><div><span class="kicker">Features</span><h2>AI가 쓰고,<br>검증기가 판정합니다</h2></div><p>기능의 중심은 하나입니다. 에이전트의 결과물을 그대로 믿지 않고, 매 관문에서 모델 검사기와 테스트, git을 직접 다시 실행해 확인합니다.</p></div>
+  <div class="rf">
+    <article class="lead"><h3>결정적 검증기</h3>
+      <p>같은 입력에 언제나 같은 결과를 내는 검사 프로그램이 모든 관문을 판정합니다. 검증기 코드는 LLM을 호출하지 않으며, 에이전트가 「통과했다」고 쓴 문장은 증거로 쓰지 않습니다.</p>
+      <ul><li>모델 확인 3종: 올바른 설계는 통과, 결함을 심은 변형은 실패, 일부러 틀린 규칙은 실패</li><li>규칙 동결: 정한 뒤에는 규칙을 고쳐서 통과시킬 수 없음</li><li>패치 감사: 공개 API 변경, 기능 무력화, 기존 테스트 수정, 범위 밖 변경을 거부</li><li>되돌림 확인: 패치를 빼면 재현 테스트가 다시 실패해야 함</li><li>보고서는 검증기가 남긴 증거 파일만 인용</li></ul></article>
+    <article><h3>원본을 건드리지 않는 작업</h3><p>등록한 폴더는 읽기 전용으로 다루고, 저장소에 무엇을 남길지는 정책으로 정합니다.</p><ul><li>보고서만 받기 (report-only)</li><li>별도 브랜치에 패치와 재현 테스트 남기기 (기본값)</li><li>어떤 정책에서도 원격 저장소로 push 하지 않음</li></ul></article>
+    <article><h3>사람의 검토, Review Gate</h3><p>판정은 검증기가 내리고, 의도는 사람이 확인합니다. 에이전트가 결정할 수 없는 항목이 이 화면에 쌓입니다.</p><ul><li>정리된 규칙이 의도를 올바로 표현하는가</li><li>자명하지 않은 수정 설계를 받아들일 것인가</li><li>공개 API를 바꾸는 수정은 적용하지 않고 제안으로 보존</li></ul></article>
+    <article><h3>Lean 4 증명으로 승격</h3><p>모델 검사를 마친 속성을 선택적으로 Lean 4 증명으로 올립니다. 유한한 범위의 확인이 「모든 크기」에 대한 증명이 됩니다.</p><ul><li>증명 검사기가 증명을 기계적으로 확인</li><li>미완성 표시(sorry)와 추가 가정이 없는지 감사</li><li>증명된 정리의 이름을 보고서에 기재</li></ul></article>
+    <article><h3>반복 검사와 지식 연결</h3><p>한 번의 검증이 이후에도 유지되도록 저장소와 지식 체계에 연결합니다.</p><ul><li>CI 회귀 가드: 코드가 바뀌면 모델과 대응표를 다시 검사</li><li>MYELIN으로 보고서·교훈 노트 초안 내보내기</li><li>화면 안 도우미 챗봇 (참고용, 판정에 관여하지 않음)</li></ul></article>
+  </div>
+</div></section>
+
+<!-- 결과물 -->
+<section class="sec soft"><div class="wrap pd-anchor" id="output">
+  <div class="sec-h"><div><span class="kicker">Verdicts &amp; deliverables</span><h2>판정에는 등급과<br>범위가 붙습니다</h2></div><p>결과는 「통과/실패」 둘로 나누지 않습니다. 무엇을 어디까지 확인했는지에 따라 여섯 등급으로 표기하고, 확인한 범위와 확인하지 않은 후보를 함께 적습니다.</p></div>
+  <div class="pd-tw"><table class="pd-table"><thead><tr><th scope="col">판정 등급</th><th scope="col">쉬운 말로</th><th scope="col">근거와 다음에 할 일</th></tr></thead><tbody>
+    <tr><th scope="row"><span class="st">FIXED</span></th><td>실제 결함을 찾아 고쳤고, 수정이 저장소에 반영되었습니다.</td><td>재현 테스트와 재검증 기록이 있습니다. 브랜치에 놓인 패치를 검토해 병합합니다.</td></tr>
+    <tr><th scope="row"><span class="st">CONFIRMED</span></th><td>실제 결함임을 확인했지만, 아직 고치지 않았거나 수정을 저장소에 넣지 않았습니다.</td><td>보고서만 받는 정책이거나 사람의 결정이 필요한 경우입니다. 제안된 패치를 검토해 적용합니다.</td></tr>
+    <tr><th scope="row"><span class="st">SUSPECTED</span></th><td>모델에서는 문제가 보이지만, 실제 코드에서 재현하지 못했습니다.</td><td>의심 단계입니다. 결함으로 단정하지 않으며 추가 검토가 필요합니다.</td></tr>
+    <tr><th scope="row"><span class="st">BOUNDED-PASS</span></th><td>살펴본 관심사에 대해, 명시된 범위 안에서는 결함을 찾지 못했습니다.</td><td>범위(상태 수·깊이)가 함께 적힙니다. 범위 밖은 말하지 않습니다.</td></tr>
+    <tr><th scope="row"><span class="st">PROVEN</span></th><td>해당 속성이 크기에 관계없이 성립함을 Lean 4로 증명했습니다.</td><td>증명된 정리에 한한 판정입니다. 모델과 코드가 대응한다는 전제는 보고서에 적습니다.</td></tr>
+    <tr><th scope="row"><span class="st">UNVERIFIED</span></th><td>아무것도 확립하지 못했습니다.</td><td>단계가 실패한 경우 등입니다. 거부한 검증기의 메시지를 확인하고 다시 실행합니다.</td></tr>
+  </tbody></table></div>
+  <p class="pd-note">「검증됨」은 결함이 없다는 뜻이 아닙니다. 관심사 하나에 대해, 명시된 범위와 단순화(추상화) 안에서 반례가 없다는 뜻입니다. 한 번의 실행은 관심사 하나를 깊이 보며, 검사하지 않은 후보는 보고서에 그대로 나열됩니다. 이 방법으로 다룰 수 없는 관심사는 OUT-OF-SCOPE로 따로 표기합니다.</p>
+  <div class="pd-cards c3">
+    <article><div class="ft"><span>읽는 결과물</span><b>Markdown·DOCX 보고서</b></div><p>무엇이 틀렸나, 실제 결함인가, 왜 틀렸나, 무엇을 고쳤나, 수정이 유효한가, 보증 범위는 어디까지인가에 근거와 함께 답합니다. 여러 프로젝트를 묶은 종합 보고서도 만들 수 있습니다.</p></article>
+    <article><div class="ft"><span>적용하는 결과물</span><b>패치 브랜치</b></div><p>기본 정책에서는 별도 브랜치에 최소 패치와 재현 테스트, 검증 기록이 담깁니다. 작업 중인 파일과 현재 브랜치는 그대로이며, 병합 여부는 사람이 정합니다.</p></article>
+    <article><div class="ft"><span>확인하는 결과물</span><b>증거 파일</b></div><p>검증기가 남긴 로그와 패치 파일이 실행별 폴더에 보존됩니다. 사용한 도구 버전과 대상 커밋이 함께 기록되어, 같은 검사를 다시 실행해 볼 수 있습니다.</p></article>
+  </div>
+</div></section>
+
+<!-- 원칙과 검증 사례 -->
+<section class="sec dark"><div class="wrap pd-anchor" id="proof">
+  <div class="pd-principle"><div><span class="kicker">Principle</span><p class="quote">에이전트가 작성하되,<br>에이전트가 <em>판정하지 않는다</em></p></div>
+    <div class="prose"><p class="big">AI가 스스로 잘했다고 말하는 것을 믿는 구조가 아닙니다.</p>
+    <p>에이전트는 목표를 달성한 것처럼 보이기 위해 규칙을 느슨하게 고치거나 테스트를 무력화하는 지름길을 택할 수 있습니다. 그래서 판정은 에이전트의 출력이 아니라 TLC 모델 검사기, 테스트 스위트, git을 직접 다시 실행한 결과에서만 계산합니다.</p>
+    <p>이 절차는 고객에게 제안하기 전에 자사 프로젝트 31개에 먼저 적용했습니다(2026년 10~11월). WDLAB-Proof-Skills는 그때의 절차와 시행착오를 도구로 옮긴 것입니다.</p></div></div>
+  <div class="stats">
+    <div><b>26<small>건</small></b><span>FIXED · 재현, 수정, 재검증, 되돌림 확인 완료</span></div>
+    <div><b>4<small>건</small></b><span>CONFIRMED · 사람의 설계 결정 대기 등 미수정</span></div>
+    <div><b>1<small>건</small></b><span>BOUNDED-PASS · 범위 안에서 결함 없음</span></div>
+    <div><b>6<small>개</small></b><span>우선순위 프로젝트 Lean 4 승격, 속성 15개 증명</span></div>
+  </div>
+  <div class="pd-case mt">
+    <article><span class="st">CASE · SSC 승인 게이트</span><h3>보안 진단 플랫폼 자신에게서 찾은 결함</h3>
+      <p>SSC는 진단 단계마다 책임자의 승인을 받아야 다음 단계로 넘어갑니다. 모델 검사는 실행 요청 두 건이 동시에 들어오면 이미 승인된 단계가 「승인 대기」로 되돌아가고, 이후 승인 처리가 계속 막히는 순서를 찾아냈습니다. 확인 범위는 단계 6개, 동시 요청 2건이었습니다.</p>
+      <div class="res"><b>FIXED</b><span>실행 재진입 가드로 수정했습니다. 이후 「승인된 단계는 되돌아가지 않는다」는 속성을 Lean 4로 단계 수와 동시 요청 수에 관계없이 증명했습니다.</span></div></article>
+    <article><span class="st">EVIDENCE · 납품되는 증거 3단</span>
+      <ol class="pd-chain">
+        <li><b>수정 전 코드에서 실패한다</b><span>모델 검사 반례를 실제 코드의 재현 테스트로 옮깁니다. 결함이 실제로 있다는 증거입니다.</span></li>
+        <li><b>수정 후에는 통과한다</b><span>기존 테스트에 회귀가 없고, 모델을 다시 검사해도 반례가 없습니다.</span></li>
+        <li><b>패치를 되돌리면 다시 실패한다</b><span>통과의 원인이 우연이 아니라 그 수정임을 확인합니다.</span></li>
+      </ol></article>
+  </div>
+  <p class="pd-note">자사 적용에서 찾은 결함은 이중 발주, 동의 철회 뒤의 데이터 저장, 평가 이벤트 유실처럼 테스트가 통과하는 상태에서 남아 있던 동시성·상태 결함이었습니다. 수치는 프로젝트별 첫 번째 발견 사항 기준입니다.</p>
+</div></section>
+
+<!-- One Cycle 안에서의 자리 (이 구역의 pd-loop 와 pd-nav 는 다섯 화면 공통: 고치지 않는다) -->
+<section class="sec"><div class="wrap pd-anchor" id="cycle">
+  <div class="sec-h"><div><span class="kicker">In the cycle</span><h2>One Cycle 안에서<br>04 형식 검증을 맡습니다</h2></div><p>품질 진단과 보안 분석·수정을 거친 코드를 받아, 그 수정이 유효한지와 가장 위험한 동시성·상태 문제가 남아 있지 않은지를 확인합니다. 판정이 붙은 보고서와 패치는 운영 감시와 지식 자산화 단계로 이어집니다.</p></div>
+  <ol class="pd-loop" aria-label="One Cycle 여섯 단계">
+    <li><div class="cell"><i>01</i><b>개발</b><span>AI Agent Platform</span></div></li>
+    <li><a class="cell" href="/a3sc/ISMA3SC003M6.do"><i>02</i><b>품질 진단</b><span>WDLAB-LLMOps</span></a></li>
+    <li><a class="cell" href="/a3sc/ISMA3SC003M7.do"><i>03</i><b>보안 분석·수정</b><span>SSC</span></a></li>
+    <li class="on" aria-current="step"><div class="cell"><i>04</i><b>형식 검증</b><span>Proof-Skills</span></div></li>
+    <li><a class="cell" href="/a3sc/ISMA3SC003M9.do"><i>05</i><b>운영 감시</b><span>ARGUS</span></a></li>
+    <li><a class="cell" href="/a3sc/ISMA3SC003M10.do"><i>06</i><b>지식 자산화</b><span>MYELIN</span></a></li>
+  </ol>
+  <div class="pd-io">
+    <div><small>앞 단계에서 받는 것</small><b>진단과 수정을 거친 코드</b><span>SSC가 취약점을 분석하고 즉시 수정한 저장소가 입력입니다. 프로젝트 이름과 폴더만 등록하면 됩니다.</span></div>
+    <div><small>이 단계가 하는 일</small><b>재현하고, 고치고, 다시 확인</b><span>테스트로 드러나지 않는 동시성·상태 결함을 모델 검사로 찾아 실제 코드에서 재현하고, 최소 패치와 재검증까지 수행합니다.</span></div>
+    <div><small>다음 단계로 넘기는 것</small><b>판정이 붙은 보고서와 패치</b><span>검증을 마친 플랫폼은 ARGUS의 감시 아래 운영되고, 보고서와 교훈은 MYELIN의 초안 노트가 됩니다. ARGUS 경보는 이 단계의 재검증을 다시 호출합니다.</span></div>
+  </div>
+  <nav class="pd-nav" aria-label="다른 플랫폼">
+    <a class="prev" href="/a3sc/ISMA3SC003M7.do"><small>← 이전 단계 · 03 보안 분석·수정</small><b>SSC</b></a>
+    <a class="home" href="/a3sc/ISMA3SC003M5.do#stages"><small>전체 흐름 보기</small><b>One Cycle Dev. Framework</b></a>
+    <a class="next" href="/a3sc/ISMA3SC003M9.do"><small>다음 단계 · 05 운영 감시 →</small><b>ARGUS</b></a>
+  </nav>
+</div></section>
+
+<!-- 용어 풀이 · 자주 묻는 질문 -->
+<section class="sec soft"><div class="wrap pd-anchor" id="terms">
+  <div class="sec-h"><div><span class="kicker">Glossary</span><h2>처음 보는 말,<br>쉽게 풀어 드립니다</h2></div><p>이 화면에 나오는 용어를 전공자가 아니어도 읽을 수 있게 정리했습니다.</p></div>
+  <dl class="pd-terms">
+    <div><dt>형식 검증<small>Formal Verification</small></dt><dd>프로그램의 동작을 수학적 모델로 옮겨, 정해진 규칙을 항상 지키는지 따지는 방법입니다. 몇 가지 경우를 해 보는 테스트와 달리, 가능한 경우 전체를 대상으로 합니다.</dd></div>
+    <div><dt>모델 검사<small>Model Checking</small></dt><dd>형식 검증의 한 방법입니다. 정해진 범위 안에서 일어날 수 있는 모든 순서를 컴퓨터가 빠짐없이 따져, 규칙을 어기는 순서가 있는지 찾습니다.</dd></div>
+    <div><dt>동시성 결함<small>경합 · Race Condition</small></dt><dd>두 요청이 거의 동시에 처리될 때만 나타나는 문제입니다. 차례로 처리될 때는 나타나지 않아 일반 테스트로 찾기 어렵습니다.</dd></div>
+    <div><dt>TLA+ · TLC<small>모델 언어와 모델 검사기</small></dt><dd>TLA+는 시스템의 동작을 모델로 적는 언어이고, TLC는 그 모델의 모든 순서를 실제로 따져 보는 프로그램입니다.</dd></div>
+    <div><dt>속성<small>Property</small></dt><dd>시스템이 반드시 지켜야 할 규칙입니다. 예를 들어 「같은 결제는 한 번만 처리된다」, 「승인된 단계는 되돌아가지 않는다」와 같은 문장입니다.</dd></div>
+    <div><dt>반례<small>Counterexample</small></dt><dd>규칙이 깨지는 구체적인 사건의 순서입니다. 모델 검사기가 「이 순서로 일어나면 규칙이 깨진다」고 단계별로 보여 줍니다.</dd></div>
+    <div><dt>재현 테스트<small>Reproduction Test</small></dt><dd>모델에서 찾은 반례를 실제 코드에서 그대로 일으키는 테스트입니다. 수정 전에는 실패하고 수정 후에는 통과해야 합니다.</dd></div>
+    <div><dt>경계<small>Bound</small></dt><dd>모델 검사가 따져 본 범위입니다. 「요청 2건, 단계 6개」처럼 크기를 정하고, 살펴본 상태 수와 깊이를 보고서에 적습니다.</dd></div>
+    <div><dt>결정적 검증기<small>Deterministic Verifier</small></dt><dd>같은 입력에 언제나 같은 결과를 내는 검사 프로그램입니다. AI의 판단 없이 모델 검사기·테스트·git의 실행 결과만으로 통과 여부를 정합니다.</dd></div>
+    <div><dt>패치<small>Patch</small></dt><dd>코드의 수정분입니다. 이 플랫폼은 결함을 없애는 데 필요한 만큼만 고치는 최소 패치를 만들고, 무엇을 바꿨는지 기록으로 남깁니다.</dd></div>
+    <div><dt>Lean 4<small>증명 보조기</small></dt><dd>수학적 증명을 적으면 컴퓨터가 한 줄씩 옳은지 확인해 주는 도구입니다. 유한한 범위가 아니라 모든 크기에 대해 속성이 성립함을 보일 때 씁니다.</dd></div>
+    <div><dt>Review Gate<small>사람의 검토 · HITL</small></dt><dd>사람의 판단이 필요한 항목을 모아 승인하거나 반려하는 화면입니다. HITL(Human in the Loop)은 자동 처리 과정에 사람의 확인을 두는 방식을 말합니다.</dd></div>
+  </dl>
+  <h3 class="pd-faq-h">자주 묻는 질문</h3>
+  <div class="pd-faq">
+    <details><summary>TLA+나 Lean을 몰라도 쓸 수 있습니까?</summary><p>쓸 수 있습니다. 모델과 재현 테스트, 수정안은 코딩 에이전트가 작성합니다. 사용자가 하는 일은 프로젝트를 등록하고, 보고서를 읽고, Review Gate의 항목을 승인하거나 반려하는 것입니다. 보고서는 무엇이 틀렸고 왜 틀렸는지, 무엇을 고쳤는지를 일반 문장과 코드 위치로 설명합니다.</p></details>
+    <details><summary>우리 코드가 밖으로 나갑니까?</summary><p>도구 자체와 모델 검사기, 테스트, 검증기는 설치한 장비 안에서 실행되고, 웹 화면도 그 장비에서만 열립니다. 원격 저장소로 push 하지도 않습니다. 다만 모델과 수정안을 작성하는 에이전트 단계와 도우미 챗봇은 코딩 에이전트(Claude Code)를 사용하므로, 분석에 필요한 코드와 실행 요약이 사용 중인 계정을 통해 모델 제공사로 전송됩니다. 외부 전송이 허용되지 않는 환경이라면 도입 전에 구성과 적용 범위를 함께 검토해 드립니다.</p></details>
+    <details><summary>AI가 틀린 모델이나 잘못된 수정을 만들면 어떻게 됩니까?</summary><p>그 경우를 전제로 설계했습니다. 결함을 잡아내지 못하는 모델, 수정 전 코드에서 실패하지 않는 재현 테스트, 기존 테스트를 고치거나 기능을 무력화하는 패치는 검증기가 거부합니다. 거부된 단계는 사유와 함께 다시 시도하고, 끝내 통과하지 못하면 그 사실이 판정에 그대로 반영됩니다.</p></details>
+    <details><summary>「검증됨」이면 버그가 없다는 뜻입니까?</summary><p>아닙니다. 살펴본 관심사 하나에 대해, 보고서에 적힌 범위와 단순화 안에서 반례가 없다는 뜻입니다. 모델은 실제 코드를 단순화한 것이어서, 대응표와 재현 테스트가 둘 사이의 간극을 줄이지만 없애지는 못합니다. 프로젝트 전체가 검증되었다는 표현은 보고서 어디에도 쓰지 않습니다.</p></details>
+    <details><summary>사람이 해야 할 일은 무엇입니까?</summary><p>세 가지입니다. 첫째, 에이전트가 정리한 규칙이 시스템이 실제로 지켜야 할 것을 올바로 표현하는지 확인합니다. 매 실행의 첫 검토 항목입니다. 둘째, 자명하지 않은 수정 설계를 받아들일지 정합니다. 셋째, 브랜치에 놓인 패치를 검토해 병합합니다. 승인과 반려는 기록으로 남지만 검증기가 낸 판정 값을 바꾸지는 않습니다.</p></details>
+    <details><summary>운영 중인 저장소가 바뀌지 않습니까?</summary><p>모든 작업은 격리된 복제본에서 이루어집니다. 기본 정책은 별도 브랜치에 결과를 남길 뿐 작업 중인 파일과 현재 브랜치는 건드리지 않습니다. 운영 중인 프로젝트를 처음 검증할 때는 저장소에 아무것도 남기지 않는 「보고서만 받기」 정책을 권합니다. 이 경우 검증된 패치는 제안으로 보존되고 판정은 CONFIRMED로 표기됩니다.</p></details>
+    <details><summary>기존 테스트나 보안 컨설팅을 대신합니까?</summary><p>대신하지 않습니다. 기존 테스트는 검증의 출발점이자 회귀 확인의 기준으로 그대로 쓰입니다. 이 플랫폼이 다루는 것은 코드와 동작 수준의 동시성·상태 결함이며, AI 모델 자체의 답변 품질이나 환각은 대상이 아닙니다. 그 영역은 품질 진단 단계(WDLAB-LLMOps)가 맡습니다. 관리체계와 정책, 위험의 해석과 우선순위 결정은 컨설턴트의 일입니다. 현재 지원 대상은 Python과 Node.js 프로젝트이며, 전 과정을 실제 프로젝트로 실행해 확인한 것은 Python입니다.</p></details>
+  </div>
+</div></section>
+
+<!-- 도입 문의 (기존 화면과 같은 부품) -->
+<section class="sec s"><div class="wrap"><div class="cta pd-anchor" id="contact"><div><h2>테스트는 통과했습니다. 그다음은 확인하셨습니까?</h2><p>운영 중이거나 출시를 앞둔 AI 에이전트 서비스에서 먼저 살펴볼 관심사와 검증 범위를 함께 정해 드립니다.</p><div class="actions" style="margin-top:34px"><a class="pill white" href="mailto:hello@a3sc.co.kr">hello@a3sc.co.kr <span class="ar">→</span></a></div></div><div class="num">대표전화<b>02-6952-2511</b></div></div></div></section>
+
+<script>/* 서브 메뉴: 보고 있는 구역을 표시 */(function(){var nav=document.getElementById('pd-subnav');if(!nav||!('IntersectionObserver' in window))return;var as=nav.querySelectorAll('a'),map={};
+for(var i=0;i<as.length;i++){var el=document.getElementById(as[i].getAttribute('href').slice(1));if(el)map[el.id]=as[i]}
+var io=new IntersectionObserver(function(es){for(var i=0;i<es.length;i++)if(es[i].isIntersecting){for(var j=0;j<as.length;j++)as[j].className='';map[es[i].target.id].className='on'}},{rootMargin:'-30% 0px -60% 0px'});
+for(var id in map)io.observe(document.getElementById(id))})()</script>
